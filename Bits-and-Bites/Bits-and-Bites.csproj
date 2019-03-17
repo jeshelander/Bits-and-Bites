@@ -339,6 +339,7 @@
     <Content Include="Views\Home\BlogPost.cshtml" />
     <Content Include="Views\Home\Static.cshtml" />
     <Content Include="Views\Home\Archive.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
