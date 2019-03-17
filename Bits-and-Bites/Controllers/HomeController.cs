@@ -13,6 +13,21 @@ namespace Bits_and_Bites.Controllers
             return View();
         }
 
+        public ActionResult BlogPost()
+        {
+            return View();
+        }
+
+        public ActionResult Static()
+        {
+            return View();
+        }
+
+        public ActionResult Archive()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
