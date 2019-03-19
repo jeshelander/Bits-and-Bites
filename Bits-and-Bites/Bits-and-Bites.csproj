@@ -207,6 +207,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bits-and-Bites.accdb" />
     <Content Include="Content\css\bootstrap\bootstrap.min.css" />
     <Content Include="Content\css\others\animate.css" />
     <Content Include="Content\css\others\font-awesome.min.css" />
