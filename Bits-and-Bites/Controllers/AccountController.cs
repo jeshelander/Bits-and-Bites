@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Bits_and_Bites.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Bits_and_Bites.Controllers
 {
@@ -155,6 +156,17 @@ namespace Bits_and_Bites.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    //Temp Code to create an admin to who ever creates an account
+
+                    //var roleStore = new roleStore<IdentityRole>(new ApplicationDbContext);
+                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    //await roleManager.CreateAsync(new IdentityRole("CanManageMovie"));
+                    //await UserManager.AddToRoleAsync(user.Id, "CanManageMovie");
+                    
+                    
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
