@@ -39,6 +39,7 @@
     @Html.Partial("_Header")
     <div>
         @RenderBody()
+        @RenderSection("scripts", required: false)
     </div>
     @Html.Partial("_Footer")
     <!-- Jquery-2.2.4 js -->
