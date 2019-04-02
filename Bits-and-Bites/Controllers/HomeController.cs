@@ -41,5 +41,12 @@ namespace Bits_and_Bites.Controllers
 
             return View();
         }
+
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Login";
+
+            return View();
+        }
     }
 }

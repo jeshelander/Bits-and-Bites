@@ -16,23 +16,23 @@
             <div class="col-7 col-sm-6">
                 <div class="signup-search-area d-flex align-items-center justify-content-end">
                     <div class="login_register_area d-flex">
-                        <div class="login">
-                            <a href="register.html">Sing in</a>
+                        <div class="login" style="z-index: 5">
+                            <a href="@Url.Action("Login", "Account", new { controller = "Account" })">Sign in</a>
                         </div>
-                        <div class="register">
-                            <a href="register.html">Sing up</a>
+                        <div class="register" style="z-index: 5">
+                            <a href="@Url.Action("Register", "Account", new { controller = "Account" })">Sign Up</a>
                         </div>
                     </div>
                     <!-- Search Button Area -->
                     <div class="search_button">
-                        <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true" style="z-index: -1"></i></a>
                     </div>
                     <!-- Search Form -->
                     <div class="search-hidden-form">
                         <form action="#" method="get">
                             <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
                             <input type="submit" value="" class="d-none">
-                            <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            <span class="searchBtn"><i class="fa fa-times" aria-hidden="true" style="z-index: 10"></i></span>
                         </form>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
             <!-- Logo Area Start -->
             <div class="col-12">
                 <div class="logo_area text-center">
-                    <a href="Home" class="yummy-logo">Yummy Blog</a>*
+                    <a href="Home" class="yummy-logo">Bits &amp; Bites</a>*
                 </div>
             </div>
         </div>
