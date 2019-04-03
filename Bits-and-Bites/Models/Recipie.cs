@@ -7,10 +7,10 @@ namespace Bits_and_Bites.Models
 {
 	public class Recipie
 	{
-		int Id { get; set; }
-		string RecipieName { get; set; }
-		string CookTime { get; set; }
-		string CookTemp { get; set; }
-		string Directions { get; set; }
+		public int Id { get; set; }
+		public string RecipieName { get; set; }
+		public string CookTime { get; set; }
+		public string CookTemp { get; set; }
+		public string Directions { get; set; }
 	}
 }

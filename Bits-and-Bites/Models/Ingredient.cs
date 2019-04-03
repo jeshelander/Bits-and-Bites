@@ -6,9 +6,9 @@ using System.Web;
 namespace Bits_and_Bites.Models
 {
     public class Ingredient
-    {
-        int Id { get; set; }
-        string IngredientName { get; set; }
-        int RecipieID { get; set; }
+    {        
+        public int Id { get; set; }
+        public string IngredientName { get; set; }
+        public int RecipieID { get; set; }
     }
 }
