@@ -1078,7 +1078,7 @@ li {
 	background-position: center center;
 	background-size: cover;
 	position: relative;
-	z-index: 1;
+	z-index: 1;	
 }
 
 .breadcumb-area:after {
@@ -1109,6 +1109,7 @@ li {
 .breadcumb-nav .breadcrumb .breadcrumb-item a {
 	color: #232d37;
 	font-size: 16px;
+	
 }
 
 .breadcrumb-item + .breadcrumb-item:before {
