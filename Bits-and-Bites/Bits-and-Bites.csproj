@@ -351,6 +351,7 @@
     <Content Include="Views\Home\Archive.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\AddNewRecipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

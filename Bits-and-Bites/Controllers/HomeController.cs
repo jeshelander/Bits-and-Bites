@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bits_and_Bites.Models;
+using System.Data.SqlClient;
 
 namespace Bits_and_Bites.Controllers
 {
@@ -46,6 +48,17 @@ namespace Bits_and_Bites.Controllers
         {
             ViewBag.Message = "Login";
 
+            return View();
+        }
+
+        public ActionResult AddNewRecipe()
+        {
+            return View();
+        }        
+
+        [HttpPost]
+        public ActionResult AddNewRecipe(Recipie newRecipe)
+        {
             return View();
         }
     }
