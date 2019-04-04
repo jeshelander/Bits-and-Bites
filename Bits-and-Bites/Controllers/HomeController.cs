@@ -10,6 +10,7 @@ namespace Bits_and_Bites.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
             return View();
@@ -59,6 +60,7 @@ namespace Bits_and_Bites.Controllers
         [HttpPost]
         public ActionResult AddNewRecipe(Recipie newRecipe)
         {
+            
             return View();
         }
     }

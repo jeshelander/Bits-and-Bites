@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201904030058346_Initial Model.Designer.cs">
       <DependentUpon>201904030058346_Initial Model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904041915409_db connection.cs" />
+    <Compile Include="Migrations\201904041915409_db connection.Designer.cs">
+      <DependentUpon>201904041915409_db connection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -368,6 +372,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904030058346_Initial Model.resx">
       <DependentUpon>201904030058346_Initial Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041915409_db connection.resx">
+      <DependentUpon>201904041915409_db connection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

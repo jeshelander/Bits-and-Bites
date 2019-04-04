@@ -20,9 +20,9 @@ namespace Bits_and_Bites.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Image> Image { get; set; }
-        public DbSet<Ingredient> Ingredient { get; set; }
-        public DbSet<Recipie> Recipie { get; set; }
+        public DbSet<Image> ImageDB { get; set; }
+        public DbSet<Ingredient> IngredientDB { get; set; }
+        public DbSet<Recipie> RecipieDB { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
