@@ -54,13 +54,15 @@ namespace Bits_and_Bites.Controllers
 
         public ActionResult AddNewRecipe()
         {
-            return View();
+            Recipie re = new Recipie();
+            return View(re);
         }        
 
         [HttpPost]
         public ActionResult AddNewRecipe(Recipie newRecipe)
         {
-            
+            db.RecipieDB.Add(newRecipe);
+            db.SaveChanges();
             return View();
         }
     }

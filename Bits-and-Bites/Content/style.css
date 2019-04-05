@@ -21,6 +21,7 @@
 :: 12.0 Paginatio Area CSS
 :: 13.0 Contact Area CSS
 :: 14.0 Single Blog CSS
+:: 15.0 Our additions
 ----------------------------------- */
 
 /* ***** Fonts ***** */
@@ -1092,7 +1093,7 @@ li {
 	z-index: -1;
 }
 
-.breadcumb-area .bradcumb-title h2 {
+.breadcumb-area .breadcumb-title h2 {
 	font-size: 48px;
 	color: #fff;
 }
@@ -1488,3 +1489,6 @@ li {
 	color: #fff;
 	cursor: pointer;
 }
+
+/*Our additions*/
+

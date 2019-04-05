@@ -1,4 +1,8 @@
-﻿<!-- ****** Breadcumb Area Start ****** -->
+﻿
+    @using Bits_and_Bites.Models;
+    @model Recipie    
+
+<!-- ****** Breadcumb Area Start ****** -->
 <div class="breadcumb-area" style="background-image: url(../../Content/img/bg-img/breadcumb.jpg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
@@ -10,7 +14,8 @@
         </div>
     </div>
 </div>
-<div class="breadcumb-nav">
+
+@*<div class="breadcumb-nav">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -24,12 +29,51 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!-- ****** Breadcumb Area End ****** -->
 <!-- ****** Single Blog Area Start ****** -->
 <section class="single_blog_area section_padding_80">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row col-md-12">
+            <h2 class="post-headline">First, enter your ingredients below!</h2>
+        </div>
+        @using (Html.BeginForm("AddNewRecipe", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="row col-md-12">
+                @Html.TextAreaFor(m => m.Ingredients, htmlAttributes: new { @class = "col-md-12", @minLength = "4", @rows = "5" })
+            </div>
+            <div class="row">
+                <p></p>
+            </div>
+            <div class="row col-md-12">
+                <h2>Now, tell us what to do!</h2>
+            </div>
+            <div class="row col-md-12">
+                @Html.TextAreaFor(m => m.Directions, htmlAttributes: new { @class = "col-md-12", @minLength = "4", @rows = "5" })
+            </div>
+            <div class="row">
+                <p></p>
+            </div>
+            <div class="row">
+                <h2 class="col-md-5">How long should this take, from starting prep, to sitting down to eat?</h2>
+                <h2 class="col-md-1"></h2>
+                <h2 class="col-md-5">And last, give us some keywords about your recipe.<br />Be sure to separate each keyword with a ";"</h2>
+            </div>
+            <div class="row">
+                @Html.TextBoxFor(m => m.CookTime, htmlAttributes: new { @class = "col-md-5" })
+                <h2 class="col-md-1"></h2>                
+                @Html.TextAreaFor(m => m.Keywords, htmlAttributes: new { @class = "col-md-5", @minLength = "4", @rows = "5", @style="justify-content: flex-end" })
+            </div>
+            <div class="row">
+                <p></p>
+            </div>
+            <div class="row col-md-12" style="justify-content:flex-end">
+                <input type="submit" value="Save" class="btn btn-default col-md-1" />
+                <p class="col-md-1"></p>
+                <input type="button" value="Cancel" class="btn btn-default col-md-1" onclick=" location.href='@Url.Action("Index", "Home")'"/>
+            </div>
+        }
+        @*<div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <div class="row no-gutters">
 
@@ -80,6 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <a href="#">
                                     <h2 class="post-headline">Boil The Kettle And Make A Cup Of Tea Folks, This Is Going To Be A Big One!</h2>
                                 </a>
@@ -227,7 +272,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 </section>
 <!-- ****** Single Blog Area End ****** -->

@@ -208,6 +208,14 @@
     <Compile Include="Migrations\201904041915409_db connection.Designer.cs">
       <DependentUpon>201904041915409_db connection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904051717379_moved ingredients to recipie table.cs" />
+    <Compile Include="Migrations\201904051717379_moved ingredients to recipie table.Designer.cs">
+      <DependentUpon>201904051717379_moved ingredients to recipie table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904052201302_changed cooktime to keywords.cs" />
+    <Compile Include="Migrations\201904052201302_changed cooktime to keywords.Designer.cs">
+      <DependentUpon>201904052201302_changed cooktime to keywords.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -375,6 +383,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904041915409_db connection.resx">
       <DependentUpon>201904041915409_db connection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904051717379_moved ingredients to recipie table.resx">
+      <DependentUpon>201904051717379_moved ingredients to recipie table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904052201302_changed cooktime to keywords.resx">
+      <DependentUpon>201904052201302_changed cooktime to keywords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
