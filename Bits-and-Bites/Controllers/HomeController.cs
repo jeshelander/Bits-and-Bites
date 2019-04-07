@@ -33,14 +33,14 @@ namespace Bits_and_Bites.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Bits and Bites.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Reach out to us.";
 
             return View();
         }
