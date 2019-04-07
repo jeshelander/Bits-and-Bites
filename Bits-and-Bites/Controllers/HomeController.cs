@@ -33,7 +33,7 @@ namespace Bits_and_Bites.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Bits and Bites.";
+            ViewBag.Message = "Bits and Bites";
 
             return View();
         }
