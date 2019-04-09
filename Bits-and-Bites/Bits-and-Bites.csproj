@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201904090314585_updated image classes.Designer.cs">
       <DependentUpon>201904090314585_updated image classes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904091941391_changed image entity.cs" />
+    <Compile Include="Migrations\201904091941391_changed image entity.Designer.cs">
+      <DependentUpon>201904091941391_changed image entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -369,6 +373,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\AddNewRecipe.cshtml" />
     <Content Include="Views\Home\BlogPost - Copy.cshtml" />
+    <Content Include="Views\Home\ViewAllRecipes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -397,6 +402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904090314585_updated image classes.resx">
       <DependentUpon>201904090314585_updated image classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904091941391_changed image entity.resx">
+      <DependentUpon>201904091941391_changed image entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
