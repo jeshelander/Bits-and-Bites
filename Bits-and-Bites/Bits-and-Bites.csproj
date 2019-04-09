@@ -369,6 +369,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\AddNewRecipe.cshtml" />
     <Content Include="Views\Home\BlogPost - Copy.cshtml" />
+    <Content Include="Views\Shared\_LoginHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
