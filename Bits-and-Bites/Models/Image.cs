@@ -12,5 +12,6 @@ namespace Bits_and_Bites.Models
         public string ImageAlt { get; set; }
         public double UsageData { get; set; }
         public string ContentType { get; set; }
+        public Byte[] StoredImage { get; set; }
     }
 }

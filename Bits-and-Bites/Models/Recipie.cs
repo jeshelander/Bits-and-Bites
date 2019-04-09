@@ -13,5 +13,6 @@ namespace Bits_and_Bites.Models
 		public string CookTime { get; set; }
 		public string Keywords { get; set; }
 		public string Directions { get; set; }
+		public int ImageID { get; set; }
 	}
 }

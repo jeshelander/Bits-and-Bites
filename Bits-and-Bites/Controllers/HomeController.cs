@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Bits_and_Bites.Models;
-using System.Data.SqlClient;
+using System.IO;
 
 namespace Bits_and_Bites.Controllers
 {
@@ -54,14 +54,30 @@ namespace Bits_and_Bites.Controllers
 
         public ActionResult AddNewRecipe()
         {
-            Recipie re = new Recipie();
+            RecipeAndPictureModel re = new RecipeAndPictureModel();
             return View(re);
         }        
 
         [HttpPost]
-        public ActionResult AddNewRecipe(Recipie newRecipe)
+        public ActionResult AddNewRecipe(RecipeAndPictureModel newRecipe)
         {
-            db.RecipieDB.Add(newRecipe);
+            
+            byte[] array;
+            Image im = new Image();
+            if (newRecipe != null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    newRecipe.CombImage.InputStream.CopyTo(ms);
+                    array = ms.GetBuffer();
+                    im.StoredImage = array;
+                }
+            }
+            im.ImageName = newRecipe.CombRecipe.RecipieName;
+            im.ImageAlt = newRecipe.CombRecipe.RecipieName;
+            db.ImageDB.Add(im);
+            newRecipe.CombRecipe.ImageID = im.Id;
+            db.RecipieDB.Add(newRecipe.CombRecipe);
             db.SaveChanges();
             return View();
         }

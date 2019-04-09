@@ -364,6 +364,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\AddNewRecipe.cshtml" />
+    <Content Include="Views\Home\BlogPost - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

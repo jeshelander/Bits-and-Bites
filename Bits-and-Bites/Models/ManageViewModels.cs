@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web;
+
 
 namespace Bits_and_Bites.Models
 {
@@ -82,5 +84,11 @@ namespace Bits_and_Bites.Models
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+
+    public class RecipeAndPictureModel
+    {
+        public Recipie CombRecipe { get; set; }
+        public HttpPostedFileBase CombImage { get; set; }
     }
 }
