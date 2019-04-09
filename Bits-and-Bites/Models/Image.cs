@@ -33,5 +33,16 @@ namespace Bits_and_Bites.Models
 
             return arr;
         }
+
+        public Byte[] ReturnArray(System.Drawing.Image im)
+        {
+            Byte[] arr;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                im.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                arr =  ms.ToArray();
+            }
+            return arr;
+        }
     }
 }
