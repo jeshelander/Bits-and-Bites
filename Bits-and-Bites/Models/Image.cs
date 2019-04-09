@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
+using System.Drawing;
 
 namespace Bits_and_Bites.Models
 {
@@ -13,5 +15,23 @@ namespace Bits_and_Bites.Models
         public double UsageData { get; set; }
         public string ContentType { get; set; }
         public Byte[] StoredImage { get; set; }
+
+        public System.Drawing.Image ReturnImage (Byte[] incStream)
+        {
+            MemoryStream mems = new MemoryStream(incStream);
+            return (System.Drawing.Image.FromStream(mems));
+        }
+
+        public Byte[] ReturnArray(HttpPostedFileBase incPic)
+        {
+            Byte[] arr;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                incPic.InputStream.CopyTo(ms);
+                arr = ms.GetBuffer();
+            }
+
+            return arr;
+        }
     }
 }
