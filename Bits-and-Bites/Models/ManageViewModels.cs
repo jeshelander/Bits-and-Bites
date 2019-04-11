@@ -91,4 +91,10 @@ namespace Bits_and_Bites.Models
         public Recipie CombRecipe { get; set; }
         public HttpPostedFileBase CombImage { get; set; }
     }
+
+    public class RecipeWhole
+    {
+        public Recipie CombRecipe { get; set; }
+        public Image CombImage { get; set; }
+    }
 }

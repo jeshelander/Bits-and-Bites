@@ -10,6 +10,8 @@ namespace Bits_and_Bites.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private int counter = 0;
+        
         public ActionResult Index()
         {
             return View();
@@ -78,6 +80,48 @@ namespace Bits_and_Bites.Controllers
             db.RecipieDB.Add(newRecipe.CombRecipe);
             db.SaveChanges();
             return View();
+        }
+
+        public ActionResult ViewAllRecipes ()
+        {
+            List<Recipie> recList = new List<Recipie>();
+            List<Recipie> newList = new List<Recipie>();
+            recList = db.RecipieDB.ToList();
+
+            if (recList.Count >= 10)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    newList.Add(recList[counter]);
+                    counter++;
+                }
+            }
+            else
+            {
+                for(int i = 0; i < recList.Count; i++)
+                {
+                    newList.Add(recList[counter]);
+                    counter++;
+                }
+            }
+            List<Bits_and_Bites.Models.Image> imList = new List<Image>();
+            List<RecipeWhole> wholeRec = new List<RecipeWhole>();
+            foreach (Recipie i in newList)
+            {                
+                Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
+                imList.Add(result);
+            }
+
+            for (int i = 0; i < newList.Count; i++)
+            {
+                RecipeWhole x = new RecipeWhole
+                {
+                    CombRecipe = newList[i],
+                    CombImage = imList[i]
+                };
+                wholeRec.Add(x);
+            }
+            return View(wholeRec);
         }
     }
 }
