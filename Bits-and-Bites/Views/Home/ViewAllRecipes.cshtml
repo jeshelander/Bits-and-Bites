@@ -6,8 +6,8 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
-                <div class="bradcumb-title text-center">
-                    <h2>Archive Page</h2>
+                <div class="breadcumb-title text-center">
+                    <h2>View All Recipies</h2>
                 </div>
             </div>
         </div>
@@ -611,18 +611,40 @@
                 <div class="pagination-area d-sm-flex mt-15">
                     <nav aria-label="#">
                         <ul class="pagination">
-                            <li class="page-item active">
+                            @{ 
+                                for (int i = 1; i == (int)ViewBag.Total; i++)
+                                {
+                                    if( i == (int)ViewBag.ThisPage)
+                                    {
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">@i.ToString() <span class="sr-only">(current)</span></a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@Html.ActionLink("ViewAllRecipies", "Home", new { id = i })" >@i.ToString()</a></li>
+                                    }
+                                            }
+                                        }
+                            @*<li class="page-item active">
                                 <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                            </li>
+                            *@
+                            @{ 
+                                if ((int) ViewBag.ThisPage < (int)ViewBag.Total)
+                                {
+                                    <li class="page-item">
+                                    <a class="page-link" href="#">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    </li>
+
+                                }
+                            }                            
                         </ul>
                     </nav>
                     <div class="page-status">
-                        <p>Page 1 of 60 results</p>
+                        <p>Page 1 of @ViewBag.Total</p>
                     </div>
                 </div>
             </div>

@@ -95,6 +95,6 @@ namespace Bits_and_Bites.Models
     public class RecipeWhole
     {
         public Recipie CombRecipe { get; set; }
-        public Image CombImage { get; set; }
+        public Image CombImage { get; set; }        
     }
 }

@@ -9,8 +9,7 @@ namespace Bits_and_Bites.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private int counter = 0;
+        private ApplicationDbContext db = new ApplicationDbContext();        
         
         public ActionResult Index()
         {
@@ -82,11 +81,28 @@ namespace Bits_and_Bites.Controllers
             return View();
         }
 
-        public ActionResult ViewAllRecipes ()
+        public ActionResult ViewAllRecipes (int id = 1)
         {
             List<Recipie> recList = new List<Recipie>();
             List<Recipie> newList = new List<Recipie>();
             recList = db.RecipieDB.ToList();
+            //this should find the total number of pages, using the decimal to keep decimals until after rounding.
+            int totalPages = (int)Math.Ceiling(((decimal)recList.Count) / (decimal)(12));
+            //this should return the beginning record of a page.  
+            int counter = ((id-1) * 12) + 1;
+
+            //Checks to see if the id is a valid number
+            if (id < 1)
+            {
+                id = 1;
+            }
+
+            //Checks to see if the id is within number of archive pages.
+            else if (id > totalPages)
+            {
+                //TODO should add an error page for out of range ids
+                id = totalPages;
+            }
 
             if (recList.Count >= 10)
             {
@@ -98,7 +114,7 @@ namespace Bits_and_Bites.Controllers
             }
             else
             {
-                for(int i = 0; i < recList.Count; i++)
+                for (int i = 0; i < recList.Count; i++)
                 {
                     newList.Add(recList[counter]);
                     counter++;
@@ -107,7 +123,7 @@ namespace Bits_and_Bites.Controllers
             List<Bits_and_Bites.Models.Image> imList = new List<Image>();
             List<RecipeWhole> wholeRec = new List<RecipeWhole>();
             foreach (Recipie i in newList)
-            {                
+            {
                 Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
                 imList.Add(result);
             }
@@ -121,7 +137,13 @@ namespace Bits_and_Bites.Controllers
                 };
                 wholeRec.Add(x);
             }
+
+            ViewBag.Total = totalPages;
+            ViewBag.ThisPage = id;
+
             return View(wholeRec);
+            
+            
         }
     }
 }
