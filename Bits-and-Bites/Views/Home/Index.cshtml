@@ -2,6 +2,35 @@
     ViewBag.Title = "Home Page";
 }
 
+@{ //Populate scrolling recipe images and reviews
+
+
+    var numbers = new List<int> { 0, 1, 2, 3, 4, 5 };
+
+    //foreach (int number in numbers)
+    //{
+    //    Random rnd = new Random();
+    //    int numberBetweenOneAndSix = rnd.Next(1, 11);
+    //    numbers.Add(numberBetweenOneAndSix);
+    //}
+
+    for (int i = 0; i<6; i++)
+    {
+            Random rnd = new Random();
+            int numberBetweenOneAndSix = rnd.Next(1, 11);
+            numbers.Add(numberBetweenOneAndSix);
+    }
+
+    for (int i = 0; i < numbers.Count; i++)
+    {
+        <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-"{0} ".jpg" ,numbers))"
+
+             <!-- Had an "at" symble infron of numbers[0]-->
+        <!-- <img src="~/Content/img/bg-img/slide-" + numbers[0] + ".jpg" alt="">-->
+    }
+
+}
+
 <!-- ****** Welcome Post Area Start ****** -->
 <section class="welcome-post-sliders owl-carousel">
 
@@ -821,4 +850,3 @@
 
 </div>
 <!-- ****** Our Creative Portfolio Area End ****** -->
-
