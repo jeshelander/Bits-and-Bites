@@ -23,6 +23,7 @@ namespace Bits_and_Bites.Models
         public DbSet<Image> ImageDB { get; set; }
         //public DbSet<Ingredient> IngredientDB { get; set; }
         public DbSet<Recipie> RecipieDB { get; set; }
+        public DbSet<Like> LikeDB { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -224,11 +224,16 @@
     <Compile Include="Migrations\201904091941391_changed image entity.Designer.cs">
       <DependentUpon>201904091941391_changed image entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904142032011_added likes.cs" />
+    <Compile Include="Migrations\201904142032011_added likes.Designer.cs">
+      <DependentUpon>201904142032011_added likes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\Like.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Recipie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -374,6 +379,7 @@
     <Content Include="Views\Home\AddNewRecipe.cshtml" />
     <Content Include="Views\Home\RecipeTable.cshtml" />
     <Content Include="Views\Home\ViewAllRecipes.cshtml" />
+    <Content Include="Views\Home\Archive - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -405,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904091941391_changed image entity.resx">
       <DependentUpon>201904091941391_changed image entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904142032011_added likes.resx">
+      <DependentUpon>201904142032011_added likes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
