@@ -10,7 +10,7 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
-                <div class="bradcumb-title text-center">
+                <div class="breadcumb-title text-center">
                     <h2>Edit Recipie List</h2>
                 </div>
             </div>
@@ -19,7 +19,7 @@
 </div>
 
 <div>
-    <div class="col-12" style="justify-content:center">
+    <div class="col-md-12" style="justify-content:center">
         <table>
             <tr>
                 <th class="col-md-2">ID</th>
@@ -31,40 +31,39 @@
                     for (int i = 0; i < Model.Count(); i++)
                     {
                         <tr>
-                            @using (Html.BeginForm("RecipeTable", "Home", FormMethod.Post, new { enctype = "form" }))
-                            {
                                 <td>
-                                    @Html.LabelFor(m => m[i].Id, Model[i].Id.ToString());
+                                    @Html.LabelFor(m => m[i].Id, Model[i].Id.ToString())
                                 </td>
                                 <td>
                                     @{ if (Model[i].RecipieName != null)
                                         {
-                                            @Html.LabelFor(m => m[i].Id, Model[i].RecipieName.ToString());
+                                            @Html.LabelFor(m => m[i].Id, Model[i].RecipieName.ToString())
                                         }
                                         else
-                                        { 
-                                            @Html.LabelFor(m => m[i].RecipieName, "null");
+                                        {
+                                            @Html.LabelFor(m => m[i].RecipieName, "null")
                                         }
                                       }
                                 </td>
                                 <td>
                                     @{ if (Model[i].CookTime != null)
                                         {
-                                            @Html.LabelFor(m => m[i].CookTime, Model[i].CookTime.ToString());
+                                            @Html.LabelFor(m => m[i].CookTime, Model[i].CookTime.ToString())
                                         }
                                         else
                                         {
-                                            @Html.LabelFor(m => m[i].CookTime, "null");
+                                            @Html.LabelFor(m => m[i].CookTime, "null")
                                         }
                                     }
                                 </td>
                                 <td>
-                                    <input type="submit" value="Delete" class="btn btn-default" />
+                                    <a href="@Url.Action("RecipeTable1", "Home", new { id = Model[i].Id })">Delete</a>
                                 </td>
-                            }
+                            
                         </tr>
                     }
                 }
+
         </table>
     </div>
 </div>

@@ -158,14 +158,15 @@ namespace Bits_and_Bites.Controllers
             return View(recList);
         }
 
-        [HttpPost]
-        public ActionResult RecipeTable(Recipie rp)
+        
+        public ActionResult RecipeTable1(int id)
         {
-            db.RecipieDB.Attach(rp);
-            db.RecipieDB.Remove(rp);
+            Recipie IdRec = new Recipie();
+            IdRec = db.RecipieDB.Where(i => i.Id == id).Single();
+            db.RecipieDB.Remove(IdRec);
             db.SaveChanges();
 
-            return View();
+            return RedirectToAction("RecipeTable", "Home", null);
         }
     }
 }
