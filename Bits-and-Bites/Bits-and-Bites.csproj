@@ -372,7 +372,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\AddNewRecipe.cshtml" />
-    <Content Include="Views\Home\BlogPost - Copy.cshtml" />
+    <Content Include="Views\Home\RecipeTable.cshtml" />
     <Content Include="Views\Home\ViewAllRecipes.cshtml" />
   </ItemGroup>
   <ItemGroup>

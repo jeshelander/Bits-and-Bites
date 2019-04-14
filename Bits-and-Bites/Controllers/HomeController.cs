@@ -88,8 +88,7 @@ namespace Bits_and_Bites.Controllers
             recList = db.RecipieDB.ToList();
             //this should find the total number of pages, using the decimal to keep decimals until after rounding.
             int totalPages = (int)Math.Ceiling(((decimal)recList.Count) / (decimal)(12));
-            //this should return the beginning record of a page.  
-            int counter = ((id-1) * 12) + 1;
+            
 
             //Checks to see if the id is a valid number
             if (id < 1)
@@ -104,9 +103,12 @@ namespace Bits_and_Bites.Controllers
                 id = totalPages;
             }
 
-            if (recList.Count >= 10)
+            //this should return the beginning record of a page.  
+            int counter = ((id - 1) * 12);
+
+            if (recList.Count > 12)
             {
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 12; i++)
                 {
                     newList.Add(recList[counter]);
                     counter++;
@@ -144,6 +146,26 @@ namespace Bits_and_Bites.Controllers
             return View(wholeRec);
             
             
+        }
+
+        public ActionResult RecipeTable ()
+        {
+            List<Recipie> recList = new List<Recipie>();            
+            recList = db.RecipieDB.ToList();
+            
+            ViewBag.Total = recList.Count;
+
+            return View(recList);
+        }
+
+        [HttpPost]
+        public ActionResult RecipeTable(Recipie rp)
+        {
+            db.RecipieDB.Attach(rp);
+            db.RecipieDB.Remove(rp);
+            db.SaveChanges();
+
+            return View();
         }
     }
 }

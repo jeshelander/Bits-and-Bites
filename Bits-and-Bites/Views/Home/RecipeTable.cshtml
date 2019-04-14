@@ -1,9 +1,8 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿@using Bits_and_Bites.Models;
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Blog Post";
+    @model IList<Recipie>
 }
 
 <!-- ****** Breadcumb Area Start ****** -->
@@ -12,13 +11,64 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="bradcumb-title text-center">
-                    <h2>Single Post Blog</h2>
+                    <h2>Edit Recipie List</h2>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="breadcumb-nav">
+
+<div>
+    <div class="col-12" style="justify-content:center">
+        <table>
+            <tr>
+                <th class="col-md-2">ID</th>
+                <th class="col-md-3">Name</th>
+                <th class="col-md-2">CookTime</th>
+                <th class="col-md-3">Delete</th>
+            </tr>
+                @{
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <tr>
+                            @using (Html.BeginForm("RecipeTable", "Home", FormMethod.Post, new { enctype = "form" }))
+                            {
+                                <td>
+                                    @Html.LabelFor(m => m[i].Id, Model[i].Id.ToString());
+                                </td>
+                                <td>
+                                    @{ if (Model[i].RecipieName != null)
+                                        {
+                                            @Html.LabelFor(m => m[i].Id, Model[i].RecipieName.ToString());
+                                        }
+                                        else
+                                        { 
+                                            @Html.LabelFor(m => m[i].RecipieName, "null");
+                                        }
+                                      }
+                                </td>
+                                <td>
+                                    @{ if (Model[i].CookTime != null)
+                                        {
+                                            @Html.LabelFor(m => m[i].CookTime, Model[i].CookTime.ToString());
+                                        }
+                                        else
+                                        {
+                                            @Html.LabelFor(m => m[i].CookTime, "null");
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <input type="submit" value="Delete" class="btn btn-default" />
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+        </table>
+    </div>
+</div>
+@*<div class="breadcumb-nav">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -32,16 +82,16 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!-- ****** Breadcumb Area End ****** -->
 <!-- ****** Single Blog Area Start ****** -->
-<section class="single_blog_area section_padding_80">
+@*<section class="single_blog_area section_padding_80">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <div class="row no-gutters">
 
-                    <!-- Single Post Share Info -->
+                     Single Post Share Info 
                     <div class="col-2 col-sm-1">
                         <div class="single-post-share-info mt-100">
                             <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -50,8 +100,7 @@
                             <a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                             <a href="#" class="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
                         </div>
-                    </div>
-
+                    
                     <!-- Single Post -->
                     <div class="col-10 col-sm-11">
                         <div class="single-post">
@@ -448,4 +497,4 @@
         </div>
     </div>
 </section>
-<!-- ****** Single Blog Area End ****** -->
+<!-- ****** Single Blog Area End ****** -->*@

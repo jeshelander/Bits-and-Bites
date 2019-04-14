@@ -39,33 +39,38 @@
             <i class="fa fa-times" aria-hidden="true"></i>
         </div>*@
 
-    @Html.Partial("_Header")
+    @{
+        if (Context.User.Identity.IsAuthenticated)
+        {
+            @Html.Partial("_LoginHeader")
+        }
+        else
+        {
+            @Html.Partial("_Header")
+        }
+    }
+
     <div>
         @RenderBody()
         @RenderSection("scripts", required: false)
     </div>
 
-    @{
-        if (Context.User.Identity.IsAuthenticated)
-        {
-            @Html.Partial("_LoginHeader")
-            }
-        }
 
 
 
 
 
-        @Html.Partial("_Footer")
-        <!-- Jquery-2.2.4 js -->
-        <script src="~/Content/js/jquery/jquery-2.2.4.min.js"></script>
-        <!-- Popper js -->
-        <script src="~/Content/js/bootstrap/popper.min.js"></script>
-        <!-- Bootstrap-4 js -->
-        <script src="~/Content/js/bootstrap/bootstrap.min.js"></script>
-        <!-- All Plugins JS -->
-        <script src="~/Content/js/others/plugins.js"></script>
-        <!-- Active JS -->
-        <script src="~/Content/js/active.js"></script>
-    </body>
+
+    @Html.Partial("_Footer")
+    <!-- Jquery-2.2.4 js -->
+    <script src="~/Content/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="~/Content/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="~/Content/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="~/Content/js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="~/Content/js/active.js"></script>
+</body>
 </html>
