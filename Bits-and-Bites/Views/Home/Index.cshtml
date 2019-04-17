@@ -2,6 +2,23 @@
     ViewBag.Title = "Home Page";
 }
 
+
+
+
+@{
+
+    var numbers = new List<int> { };
+    Random rnd = new Random();
+    for (int i = 0; i <= 5; i++)
+    {
+        lock (rnd)
+        {
+            int numberBetweenOneAndEleven = rnd.Next(1, 11);
+            numbers.Add(numberBetweenOneAndEleven);
+        }
+    }
+}
+
 <!-- ****** Welcome Post Area Start ****** -->
 <section class="welcome-post-sliders owl-carousel">
 
@@ -9,7 +26,12 @@
     <div class="welcome-single-slide">
 
         <!-- Post Thumb -->
-        <img src="~/Content/img/bg-img/slide-1.jpg" alt="">
+        @{
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
+            }
+        }
         <!-- Overlay Text -->
         <div class="project_title">
             <div class="post-date-commnents d-flex">
@@ -25,7 +47,12 @@
     <!-- Single Slide -->
     <div class="welcome-single-slide">
         <!-- Post Thumb -->
-        <img src="~/Content/img/bg-img/slide-2.jpg" alt="">
+        @{
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
+            }
+        }
         <!-- Overlay Text -->
         <div class="project_title">
             <div class="post-date-commnents d-flex">
@@ -41,7 +68,12 @@
     <!-- Single Slide -->
     <div class="welcome-single-slide">
         <!-- Post Thumb -->
-        <img src="~/Content/img/bg-img/slide-3.jpg" alt="">
+        @{
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
+            }
+        }
         <!-- Overlay Text -->
         <div class="project_title">
             <div class="post-date-commnents d-flex">
@@ -57,7 +89,12 @@
     <!-- Single Slide -->
     <div class="welcome-single-slide">
         <!-- Post Thumb -->
-        <img src="~/Content/img/bg-img/slide-4.jpg" alt="">
+        @{
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
+            }
+        }
         <!-- Overlay Text -->
         <div class="project_title">
             <div class="post-date-commnents d-flex">
@@ -73,7 +110,12 @@
     <!-- Single Slide -->
     <div class="welcome-single-slide">
         <!-- Post Thumb -->
-        <img src="~/Content/img/bg-img/burgers.jpg" alt="">
+        @{
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
+            }
+        }
         <!-- Overlay Text -->
         <div class="project_title">
             <div class="post-date-commnents d-flex">
@@ -89,7 +131,12 @@
     <!-- Single Slide -->
     <div class="welcome-single-slide">
         <!-- Post Thumb -->
-        <img src="~/Content/img/bg-img/mimosa.jpg" alt="">
+        @{
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
+            }
+        }
         <!-- Overlay Text -->
         <div class="project_title">
             <div class="post-date-commnents d-flex">
@@ -821,4 +868,3 @@
 
 </div>
 <!-- ****** Our Creative Portfolio Area End ****** -->
-
