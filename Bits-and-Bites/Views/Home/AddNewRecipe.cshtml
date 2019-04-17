@@ -30,6 +30,30 @@
         </div>
     </div>
 </div>*@
+<script type="text/javascript" language="javascript">
+    function checkfile(sender) {
+        var validExts = new Array(".jpg", ".png");
+        var fileExt = sender.value;
+        var reader = new FileReader();
+        
+        fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+        if (validExts.indexOf(fileExt) < 0) {
+            alert("Invalid file selected, valid files are of " +
+                validExts.toString() + " types.");
+            return false;
+        }
+        else {
+            reader.readAsDataURL(sender);
+            reader.onload = function () {
+                var output = document.getElementById('previewImage');
+                output.src = reader.result;
+            };
+            return true;
+            
+        }
+        
+    }
+</script>
 <!-- ****** Breadcumb Area End ****** -->
 <!-- ****** Single Blog Area Start ****** -->
 <section class="single_blog_area section_padding_80">
@@ -74,11 +98,11 @@
                 <h2>Show us a picture of the finished product!!</h2>
             </div>
             <div class="row">
-                @Html.TextBoxFor(x => x.CombImage, new { type = "file" } )
+                @Html.TextBoxFor(x => x.CombImage, new { type = "file", accept = ".jpg, .png", @onchange="checkfile(this)"} )
                 @Html.ValidationMessageFor(x => x.CombImage)
             </div>
             <div class="row">
-                <p></p>
+                <img id="previewImage" src="" maxheight="400" maxwidth="200"/>
             </div>
             <div class="row col-md-12" style="justify-content:flex-end">
                 <input type="submit" value="Save" class="btn btn-default col-md-1" />
