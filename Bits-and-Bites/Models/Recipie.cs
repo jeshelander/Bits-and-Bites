@@ -14,7 +14,8 @@ namespace Bits_and_Bites.Models
 		public string Keywords { get; set; }
 		public string Directions { get; set; }
 		public int ImageID { get; set; }
-        public DateTime DateSubmitted { get; set; }
-        public int LikeCounter { get; set; }
+		public DateTime DateSubmitted { get; set; }
+		public int LikeCounter { get; set; }
+		public string SubmittedByID { get; set; }
 	}
 }

@@ -107,7 +107,7 @@
             <div class="row col-md-12" style="justify-content:flex-end">
                 <input type="submit" value="Save" class="btn btn-default col-md-1" />
                 <p class="col-md-1"></p>
-                <input type="button" value="Cancel" class="btn btn-default col-md-1" onclick=" location.href='@Url.Action("Index", "Home")'" />
+                <input type="button" value="Cancel" class="btn btn-default" onclick="location.href='@Request.UrlReferrer'" />
             </div>
         }
         @*<div class="row justify-content-center">
