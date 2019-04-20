@@ -179,7 +179,81 @@ namespace Bits_and_Bites.Controllers
         {
             List<Recipie> recList = new List<Recipie>();
             List<Recipie> newList = new List<Recipie>();
-            recList = db.RecipieDB.Where<Recipie>(x => x.SubmittedByID == User.Identity.GetUserId()).ToList();
+            string y = User.Identity.GetUserId();
+            recList = db.RecipieDB.Where<Recipie>(x => x.SubmittedByID == y).ToList();
+            //this should find the total number of pages, using the decimal to keep decimals until after rounding.
+            int totalPages = (int)Math.Ceiling(((decimal)recList.Count) / (decimal)(12));
+
+
+            //Checks to see if the id is a valid number
+            if (id < 1)
+            {
+                id = 1;
+            }
+
+            //Checks to see if the id is within number of archive pages.
+            else if (id > totalPages)
+            {
+                //TODO should add an error page for out of range ids
+                id = totalPages;
+            }
+
+            //this should return the beginning record of a page.  
+            int counter = ((id - 1) * 12);
+
+            if (recList.Count > 12)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    newList.Add(recList[counter]);
+                    counter++;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < recList.Count; i++)
+                {
+                    newList.Add(recList[counter]);
+                    counter++;
+                }
+            }
+            List<Bits_and_Bites.Models.Image> imList = new List<Image>();
+            List<RecipeWhole> wholeRec = new List<RecipeWhole>();
+            foreach (Recipie i in newList)
+            {
+                Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
+                imList.Add(result);
+            }
+
+            for (int i = 0; i < newList.Count; i++)
+            {
+                RecipeWhole x = new RecipeWhole
+                {
+                    CombRecipe = newList[i],
+                    CombImage = imList[i]
+                };
+                wholeRec.Add(x);
+            }
+
+            ViewBag.Total = totalPages;
+            ViewBag.ThisPage = id;
+            return View(wholeRec);
+        }
+
+        [Authorize]
+        public ActionResult UserLike(int id = 1)
+        {
+            List<Recipie> recList = new List<Recipie>();
+            List<Recipie> newList = new List<Recipie>();
+            List<Like> likeList = new List<Like>();
+            string y = User.Identity.GetUserId();
+            //Returns a list of likes that the user has chosen.
+            likeList = db.LikeDB.Where<Like>(x => x.UserId == y).ToList();
+
+            foreach (Like lk in likeList)
+            {
+                recList.Add(db.RecipieDB.Where(x => x.Id == lk.RecipeId).Single());
+            }
             //this should find the total number of pages, using the decimal to keep decimals until after rounding.
             int totalPages = (int)Math.Ceiling(((decimal)recList.Count) / (decimal)(12));
 

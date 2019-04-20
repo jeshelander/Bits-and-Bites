@@ -228,6 +228,14 @@
     <Compile Include="Migrations\201904142032011_added likes.Designer.cs">
       <DependentUpon>201904142032011_added likes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904202037098_I dont now what i did here.cs" />
+    <Compile Include="Migrations\201904202037098_I dont now what i did here.Designer.cs">
+      <DependentUpon>201904202037098_I dont now what i did here.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904202208332_changed Like userId to string.cs" />
+    <Compile Include="Migrations\201904202208332_changed Like userId to string.Designer.cs">
+      <DependentUpon>201904202208332_changed Like userId to string.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -380,6 +388,7 @@
     <Content Include="Views\Home\RecipeTable.cshtml" />
     <Content Include="Views\Home\ViewAllRecipes.cshtml" />
     <Content Include="Views\Home\UserHome.cshtml" />
+    <Content Include="Views\Home\UserLike.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,6 +423,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904142032011_added likes.resx">
       <DependentUpon>201904142032011_added likes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904202037098_I dont now what i did here.resx">
+      <DependentUpon>201904202037098_I dont now what i did here.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904202208332_changed Like userId to string.resx">
+      <DependentUpon>201904202208332_changed Like userId to string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
