@@ -60,29 +60,45 @@
                                             <div class="post-author-date-area d-flex">
                                                 <!-- Post Author -->
                                                 <div class="post-author">
-                                                    <a href="#">By Marian</a>
+                                                    @{ if (r.CombRecipe.SubmittedByID != null)
+                                                        {
+                                                            string userName = Membership.GetUser(Guid.Parse(r.CombRecipe.SubmittedByID)).UserName;
+                                                            <a>@userName</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a>N/A</a>
+                                                        }
+                                                    }
                                                 </div>
                                                 <!-- Post Date -->
                                                 <div class="post-date">
-                                                    <a href="#">May 19, 2017</a>
+                                                    @{ if (r.CombRecipe.DateSubmitted != null)
+                                                        {
+                                                            <a>@r.CombRecipe.DateSubmitted.ToString("MM/dd/yy")</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a>N/A</a>
+                                                        }
+                                                    }
+                                                </div>
+                                                <!-- Post Comment & Share Area -->
+                                                <div class="post-comment-share-area d-flex">
+                                                    <!-- Post Favourite -->
+                                                    <div class="post-favourite">
+                                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
+                                                    </div>
+                                                    <!-- Post Comments -->
+                                                    @*<div class="post-comments">
+                                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                                                    </div>
+                                                    <!-- Post Share -->
+                                                    <div class="post-share">
+                                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                    </div>*@
                                                 </div>
                                             </div>
-                                            <!-- Post Comment & Share Area -->
-                                            <div class="post-comment-share-area d-flex">
-                                                <!-- Post Favourite -->
-                                                <div class="post-favourite">
-                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                                </div>
-                                                <!-- Post Comments -->
-                                                <div class="post-comments">
-                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                                </div>
-                                                <!-- Post Share -->
-                                                <div class="post-share">
-                                                    <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <a href="#">
 
                                             <h4 class="post-headline">@r.CombRecipe.RecipieName</h4>
@@ -90,6 +106,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         }
                     }
                 }
