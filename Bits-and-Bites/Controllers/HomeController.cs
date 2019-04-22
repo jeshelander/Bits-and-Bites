@@ -312,5 +312,20 @@ namespace Bits_and_Bites.Controllers
             ViewBag.ThisPage = id;
             return View(wholeRec);
         }
+
+        public ActionResult ViewSingleRecipie(int id = -1)
+        {
+            if (id == - 1 || db.RecipieDB.Where<Recipie>(x => x.Id == id).FirstOrDefault() == null)
+            {
+                id = db.RecipieDB.FirstOrDefault().Id;
+            }
+            RecipeWhole rec = new RecipeWhole();
+            rec.CombRecipe = db.RecipieDB.Where<Recipie>(x => x.Id == id).Single();
+            if (rec.CombRecipe.ImageID != 0)
+            {
+                rec.CombImage = db.ImageDB.Where<Image>(x => x.Id == rec.CombRecipe.ImageID).Single();
+            }
+            return View(rec);
+        }
     }
 }
