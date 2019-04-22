@@ -77,13 +77,15 @@ namespace Bits_and_Bites.Controllers
             im.ImageName = newRecipe.CombRecipe.RecipieName;
             im.ImageAlt = newRecipe.CombRecipe.RecipieName;
             db.ImageDB.Add(im);
+            db.SaveChanges();
             newRecipe.CombRecipe.ImageID = im.Id;
             newRecipe.CombRecipe.LikeCounter = 0;
             newRecipe.CombRecipe.SubmittedByID = User.Identity.GetUserId();
             newRecipe.CombRecipe.DateSubmitted = DateTime.Parse(DateTime.Today.Date.ToString("MM/dd/yy"));
+            newRecipe.CombRecipe.SubmittedByName = User.Identity.GetUserName();
             db.RecipieDB.Add(newRecipe.CombRecipe);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("UserHome", "Home", null);
         }
 
         public ActionResult ViewAllRecipes (int id = 1)

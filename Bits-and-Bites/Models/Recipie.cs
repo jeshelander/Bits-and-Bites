@@ -17,5 +17,6 @@ namespace Bits_and_Bites.Models
 		public DateTime DateSubmitted { get; set; }
 		public int LikeCounter { get; set; }
 		public string SubmittedByID { get; set; }
+		public string SubmittedByName { get; set; }
 	}
 }

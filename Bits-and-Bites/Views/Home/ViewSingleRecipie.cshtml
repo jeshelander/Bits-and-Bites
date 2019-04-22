@@ -57,8 +57,7 @@
                                         <!-- Post Author -->
                                         @{ if (Model.CombRecipe.SubmittedByID != null)
                                             {
-                                                string userName = Membership.GetUser(Guid.Parse(Model.CombRecipe.SubmittedByID)).UserName;
-                                                <a>@userName</a>
+                                                <a>@Model.CombRecipe.SubmittedByName</a>
                                             }
                                             else
                                             {
