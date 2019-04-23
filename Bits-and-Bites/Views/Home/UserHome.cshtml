@@ -46,9 +46,8 @@
                                 <div class="post-thumb">
                                     @{ if (r.CombRecipe.ImageID != 0)
                                         {
-                                            System.Drawing.Image im = r.CombImage.ReturnImage(r.CombImage.StoredImage);
-                                            <img src="@im" alt="@r.CombImage.ImageAlt">
-                                         }
+                                            <img src="~/Home/ReturnPicture?id=@r.CombRecipe.ImageID" alt="@r.CombImage.ImageAlt">
+                                        }
                                         if (r.CombRecipe.ImageID == 0)
                                         {
                                             <img src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">

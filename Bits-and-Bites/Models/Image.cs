@@ -14,12 +14,12 @@ namespace Bits_and_Bites.Models
         public string ImageAlt { get; set; }
         public double UsageData { get; set; }
         public string ContentType { get; set; }
-        public Byte[] StoredImage { get; set; }
+        public Byte[] StoredImage { get; set; }        
 
         public System.Drawing.Image ReturnImage (Byte[] incStream)
         {
-            MemoryStream mems = new MemoryStream(incStream);
-            return (System.Drawing.Image.FromStream(mems));
+            System.Drawing.Image x = (System.Drawing.Image)((new ImageConverter()).ConvertFrom(incStream));
+            return (x);
         }
 
         public Byte[] ReturnArray(HttpPostedFileBase incPic)
