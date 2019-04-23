@@ -58,7 +58,7 @@
 <!-- ****** Single Blog Area Start ****** -->
 <section class="single_blog_area section_padding_80">
     <div class="container">
-        @using (Html.BeginForm("AddNewRecipe", "Home", FormMethod.Post, new { enctype = "multipart/formdata" }))
+        @using (Html.BeginForm("AddNewRecipe", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="col-md-12">
                 <h2>What is the name of your recipie?</h2>
@@ -98,8 +98,8 @@
                 <h2>Show us a picture of the finished product!!</h2>
             </div>
             <div class="row">
-                @Html.TextBoxFor(x => x.CombImage, new { type = "file", accept = ".jpg, .png", @onchange="checkfile(this)"} )
-                @Html.ValidationMessageFor(x => x.CombImage)
+                @Html.TextBoxFor(m => m.CombImage, new { type = "file", accept = ".jpg, .png", @onchange="checkfile(this)"} )
+                @Html.ValidationMessageFor(m => m.CombImage)
             </div>
             <div class="row">
                 <img id="previewImage" src="" maxheight="400" maxwidth="200"/>

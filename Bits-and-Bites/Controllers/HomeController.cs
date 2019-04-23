@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Bits_and_Bites.Models;
 using Microsoft.AspNet.Identity;
+using System.Drawing;
 
 namespace Bits_and_Bites.Controllers
 {
@@ -63,27 +64,24 @@ namespace Bits_and_Bites.Controllers
         [HttpPost]
         public ActionResult AddNewRecipe(RecipeAndPictureModel newRecipe)
         {
-            Image im = new Image();
+            Bits_and_Bites.Models.Image im = new Bits_and_Bites.Models.Image();
             if (newRecipe.CombImage != null)
             {
                 im.StoredImage = im.ReturnArray(newRecipe.CombImage);
-                //using (MemoryStream ms = new MemoryStream())
-                //{
-                //    newRecipe.CombImage.InputStream.CopyTo(ms);
-                //    array = ms.GetBuffer();
-                //    im.StoredImage = array;
-                //}
             }
             im.ImageName = newRecipe.CombRecipe.RecipieName;
             im.ImageAlt = newRecipe.CombRecipe.RecipieName;
+            im.ContentType = newRecipe.CombImage.ContentType;
             db.ImageDB.Add(im);
+            db.SaveChanges();
             newRecipe.CombRecipe.ImageID = im.Id;
             newRecipe.CombRecipe.LikeCounter = 0;
             newRecipe.CombRecipe.SubmittedByID = User.Identity.GetUserId();
             newRecipe.CombRecipe.DateSubmitted = DateTime.Parse(DateTime.Today.Date.ToString("MM/dd/yy"));
+            newRecipe.CombRecipe.SubmittedByName = User.Identity.GetUserName();
             db.RecipieDB.Add(newRecipe.CombRecipe);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("UserHome", "Home", null);
         }
 
         public ActionResult ViewAllRecipes (int id = 1)
@@ -127,11 +125,11 @@ namespace Bits_and_Bites.Controllers
                     counter++;
                 }
             }
-            List<Bits_and_Bites.Models.Image> imList = new List<Image>();
+            List<Bits_and_Bites.Models.Image> imList = new List<Bits_and_Bites.Models.Image>();
             List<RecipeWhole> wholeRec = new List<RecipeWhole>();
             foreach (Recipie i in newList)
             {
-                Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
+                Bits_and_Bites.Models.Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
                 imList.Add(result);
             }
 
@@ -217,11 +215,11 @@ namespace Bits_and_Bites.Controllers
                     counter++;
                 }
             }
-            List<Bits_and_Bites.Models.Image> imList = new List<Image>();
+            List<Bits_and_Bites.Models.Image> imList = new List<Bits_and_Bites.Models.Image>();
             List<RecipeWhole> wholeRec = new List<RecipeWhole>();
             foreach (Recipie i in newList)
             {
-                Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
+                Bits_and_Bites.Models.Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
                 imList.Add(result);
             }
 
@@ -290,11 +288,11 @@ namespace Bits_and_Bites.Controllers
                     counter++;
                 }
             }
-            List<Bits_and_Bites.Models.Image> imList = new List<Image>();
+            List<Bits_and_Bites.Models.Image> imList = new List<Bits_and_Bites.Models.Image>();
             List<RecipeWhole> wholeRec = new List<RecipeWhole>();
             foreach (Recipie i in newList)
             {
-                Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
+                Bits_and_Bites.Models.Image result = db.ImageDB.SingleOrDefault(tempIm => tempIm.Id == i.ImageID);
                 imList.Add(result);
             }
 
@@ -323,9 +321,16 @@ namespace Bits_and_Bites.Controllers
             rec.CombRecipe = db.RecipieDB.Where<Recipie>(x => x.Id == id).Single();
             if (rec.CombRecipe.ImageID != 0)
             {
-                rec.CombImage = db.ImageDB.Where<Image>(x => x.Id == rec.CombRecipe.ImageID).Single();
+                rec.CombImage = db.ImageDB.Where<Bits_and_Bites.Models.Image>(x => x.Id == rec.CombRecipe.ImageID).Single();
             }
             return View(rec);
+        }
+
+        public ActionResult ReturnPicture(int id = 0)
+        {
+            Bits_and_Bites.Models.Image im = db.ImageDB.Where(m => m.Id == id).SingleOrDefault();
+            return File(im.StoredImage, im.ContentType);
+            //System.Drawing.Image x = (System.Drawing.Image)((new ImageConverter()).ConvertFrom(incStream));
         }
     }
 }

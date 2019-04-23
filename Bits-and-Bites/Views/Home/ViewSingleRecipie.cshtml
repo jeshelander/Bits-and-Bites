@@ -45,7 +45,7 @@
                                     }
                                     else
                                     {
-                                        <img src="@Model.CombImage.ReturnImage(Model.CombImage.StoredImage)" alt="@Model.CombImage.ImageAlt">
+                                        <img src="~/Home/ReturnPicture?id=@Model.CombRecipe.ImageID" alt="@Model.CombImage.ImageAlt">
                                     }
                                 }
                                 
@@ -57,8 +57,7 @@
                                         <!-- Post Author -->
                                         @{ if (Model.CombRecipe.SubmittedByID != null)
                                             {
-                                                string userName = Membership.GetUser(Guid.Parse(Model.CombRecipe.SubmittedByID)).UserName;
-                                                <a>@userName</a>
+                                                <a>@Model.CombRecipe.SubmittedByName</a>
                                             }
                                             else
                                             {
@@ -447,8 +446,8 @@
                             <form action="#" method="post">
                                 <input type="email" name="newsletter-email" id="email" placeholder="Your email">
                                 <button type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                            </form>
-                        </div>*@
+                            </form>*@
+                        </div>
                     </div>
                 </div>
             </div>

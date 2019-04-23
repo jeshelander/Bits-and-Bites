@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201904202208332_changed Like userId to string.Designer.cs">
       <DependentUpon>201904202208332_changed Like userId to string.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904220614360_added username to the recipe table.cs" />
+    <Compile Include="Migrations\201904220614360_added username to the recipe table.Designer.cs">
+      <DependentUpon>201904220614360_added username to the recipe table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -430,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904202208332_changed Like userId to string.resx">
       <DependentUpon>201904202208332_changed Like userId to string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904220614360_added username to the recipe table.resx">
+      <DependentUpon>201904220614360_added username to the recipe table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
