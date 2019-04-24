@@ -23,6 +23,13 @@
                             <li class="breadcrumb-item"><a href="@Url.Action("UserHome", "Home")"><i class="fa fa-home" aria-hidden="true"></i> Submitted Recipies</a></li>
                             <li class="breadcrumb-item"><a href="@Url.Action("AddNewRecipe", "Home")"><i class="fa" aria-hidden="true"></i> Submit a New Recipe</a></li>
                             <li class="breadcrumb-item active"><a href="@Url.Action("UserLike", "Home")">Liked Recipies</a></li>
+                            @{
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <li class="breadcrumb-item active"><a href="@Url.Action("ViewReports", "Home")">View Admin Reports</a></li>
+                                    <li class="breadcrumb-item"><a href="@Url.Action("RecipeTable", "Home")">Recipie Table</a></li>
+                                }
+                            }
                         </ol>
                     </nav>
                 </div>
@@ -89,16 +96,16 @@
                                                     <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
                                                 </div>
                                                 <!-- Post Comments -->
-                                                <div class="post-comments">
+                                                @*<div class="post-comments">
                                                     <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
                                                 </div>
                                                 <!-- Post Share -->
                                                 <div class="post-share">
                                                     <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                                </div>
+                                                </div>*@
                                             </div>
                                     </div>
-                                    <a href="#">
+                                    <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })">
 
                                         <h4 class="post-headline">@r.CombRecipe.RecipieName</h4>
                                     </a>

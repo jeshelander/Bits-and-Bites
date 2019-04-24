@@ -394,6 +394,7 @@
     <Content Include="Views\Home\UserHome.cshtml" />
     <Content Include="Views\Home\UserLike.cshtml" />
     <Content Include="Views\Home\ViewSingleRecipie.cshtml" />
+    <Content Include="Views\Home\ViewReports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

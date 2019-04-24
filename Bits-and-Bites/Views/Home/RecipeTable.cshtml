@@ -17,7 +17,28 @@
         </div>
     </div>
 </div>
-
+<div class="breadcumb-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("UserHome", "Home")"><i class="fa fa-home" aria-hidden="true"></i> Submitted Recipies</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("AddNewRecipe", "Home")"><i class="fa" aria-hidden="true"></i> Submit a New Recipe</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("UserLike", "Home")">Liked Recipies</a></li>
+                        @{
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li class="breadcrumb-item active"><a href="@Url.Action("ViewReports", "Home")">View Admin Reports</a></li>
+                                <li class="breadcrumb-item"><a href="@Url.Action("RecipeTable", "Home")">Recipie Table</a></li>
+                            }
+                        }
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
 <div>
     <div class="col-md-12" style="justify-content:center">
         <table>

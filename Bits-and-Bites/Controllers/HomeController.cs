@@ -332,5 +332,10 @@ namespace Bits_and_Bites.Controllers
             return File(im.StoredImage, im.ContentType);
             //System.Drawing.Image x = (System.Drawing.Image)((new ImageConverter()).ConvertFrom(incStream));
         }
+
+        public ActionResult ViewReports()
+        {
+            return View();
+        }
     }
 }
