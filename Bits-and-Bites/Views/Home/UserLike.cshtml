@@ -90,20 +90,27 @@
                                             </div>
                                         </div>
                                             <!-- Post Comment & Share Area -->
-                                            <div class="post-comment-share-area d-flex">
-                                                <!-- Post Favourite -->
-                                                <div class="post-favourite">
-                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                                </div>
-                                                <!-- Post Comments -->
-                                                @*<div class="post-comments">
-                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                                </div>
-                                                <!-- Post Share -->
-                                                <div class="post-share">
-                                                    <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                                </div>*@
-                                            </div>
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            @{
+                                                @*if (!r.IsLiked)
+                                                {
+                                                    <a href="@Url.Action("ChangeLikes", "Home", new { id = r.CombRecipe.Id })"><i class="fa fa-heart-o" aria-hidden="true"></i>@r.CombRecipe.LikeCounter</a>
+                                                }
+                                                else
+                                                {*@
+                                                    <a href="#"><i class="fa fa-heartbeat" aria-hidden="true"></i>@r.CombRecipe.LikeCounter</a>
+                                                @*}*@
+                                            }
+                                            <!-- Post Comments -->
+                                            @*<div class="post-comments">
+            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+        </div>
+        <!-- Post Share -->
+        <div class="post-share">
+            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+        </div>*@
+                                        </div>
                                     </div>
                                     <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })">
 

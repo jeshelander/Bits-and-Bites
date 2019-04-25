@@ -94,7 +94,16 @@
                                         <div class="post-comment-share-area d-flex">
                                             <!-- Post Favourite -->
                                             <div class="post-favourite">
-                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
+                                                @{
+                                                    if (!r.IsLiked)
+                                                    {
+                                                <a href="@Url.Action("ChangeLikes", "Home", new { id = r.CombRecipe.Id })"><i class="fa fa-heart-o" aria-hidden="true"></i>@r.CombRecipe.LikeCounter</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#"><i class="fa fa-heartbeat" aria-hidden="true"></i>@r.CombRecipe.LikeCounter</a>
+                                                    }
+                                                }
                                             </div>
                                             <!-- Post Comments -->
                                             @*<div class="post-comments">

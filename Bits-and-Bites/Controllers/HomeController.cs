@@ -230,6 +230,17 @@ namespace Bits_and_Bites.Controllers
                     CombRecipe = newList[i],
                     CombImage = imList[i]
                 };
+                var temp = User.Identity.GetUserId();
+                Recipie tr = db.RecipieDB.Where(m => m.Id == id).SingleOrDefault();
+                Like tl = db.LikeDB.Where(m => m.RecipeId == id && m.UserId == temp).SingleOrDefault();
+                if (tl == null)
+                {
+                    x.IsLiked = false;
+                }
+                else
+                {
+                    x.IsLiked = true;
+                }
                 wholeRec.Add(x);
             }
 
@@ -303,6 +314,9 @@ namespace Bits_and_Bites.Controllers
                     CombRecipe = newList[i],
                     CombImage = imList[i]
                 };
+                var temp = User.Identity.GetUserId();
+                Recipie tr = db.RecipieDB.Where(m => m.Id == id).SingleOrDefault();
+                Like tl = db.LikeDB.Where(m => m.RecipeId == id && m.UserId == temp).SingleOrDefault();
                 wholeRec.Add(x);
             }
 
@@ -336,6 +350,30 @@ namespace Bits_and_Bites.Controllers
         public ActionResult ViewReports()
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult ChangeLikes(int id = 0)
+        {
+            if (id > 0)
+            {
+                var temp = User.Identity.GetUserId();
+                Recipie tr = db.RecipieDB.Where(m => m.Id == id).SingleOrDefault();
+                Like tl = db.LikeDB.Where(m => m.RecipeId == id && m.UserId == temp).SingleOrDefault();
+                if (tl == null)
+                {
+                    tl = new Like();
+                    tl.RecipeId = id;
+                    tl.UserId = User.Identity.GetUserId();
+                    tl.TimeLiked = DateTime.Today;
+                    db.LikeDB.Add(tl);
+                    tr.LikeCounter += 1;
+                    db.Entry(tr).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }
