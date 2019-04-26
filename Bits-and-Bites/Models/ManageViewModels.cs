@@ -98,4 +98,10 @@ namespace Bits_and_Bites.Models
         public Image CombImage { get; set; }
         public bool IsLiked { get; set; }
     }
+
+    public class IndexRecs
+    {
+        public List<RecipeWhole> ListForIndexScrollBar { get; set; }
+        public List<RecipeWhole> MostRecentRecs { get; set; }
+    }
 }

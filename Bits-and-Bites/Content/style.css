@@ -127,6 +127,7 @@ p {
 
 img {
 	max-width: 100%;
+	max-height: 300px;
 }
 
 .mt-15 {
@@ -485,7 +486,7 @@ li {
 .welcome-single-slide {
 	position: relative;
 	z-index: 1;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .welcome-single-slide .project_title a > h5 {

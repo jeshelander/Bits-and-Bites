@@ -1,8 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@using Bits_and_Bites.Models
+@model IndexRecs
 
-@{
+@*@{
     var numbers = new List<int> { };
     Random rnd = new Random();
     for (int i = 0; i <= 5; i++)
@@ -13,34 +15,70 @@
             numbers.Add(numberBetweenOneAndEleven);
         }
     }
-}
+}*@
 
 <!-- ****** Welcome Post Area Start ****** -->
 <section class="welcome-post-sliders owl-carousel">
 
-    <!-- Single Slide -->
-    <div class="welcome-single-slide">
+    @{ foreach (RecipeWhole r in Model.ListForIndexScrollBar)
+        {
+            <!-- Single Slide -->
+            <div class="welcome-single-slide">
 
-        <!-- Post Thumb -->
-        @{
-            for (int i = 5; i < numbers.Count; i++)
-            {
-                <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
-            }
-        }
-        <!-- Overlay Text -->
-        <div class="project_title">
-            <div class="post-date-commnents d-flex">
-                <a href="#">January 19, 2019</a>
-                <a href="#">2 Comment</a>
+                <!-- Post Thumb -->
+                @{ if (r.CombRecipe.ImageID != 0)
+                    {
+                            <img style="max-height:300px" href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })" src="~/Home/ReturnPicture?id=@r.CombRecipe.ImageID" alt="@r.CombImage.ImageAlt">
+                    }
+                    if (r.CombRecipe.ImageID == 0)
+                    {
+                            <img style="max-height:300px" href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })" src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">
+                    }
+                  }
+                @*@{
+                    for (int i = 5; i < numbers.Count; i++)
+                    {
+                        <img src="@Url.Content(String.Format("~/Content/img/bg-img/slide-{0}.jpg", numbers[i]))" />
+                    }
+                }*@
+                <!-- Overlay Text -->
+                <div class="project_title">
+                    <div class="post-date-commnents d-flex">
+                        @{string y = "N/A";
+                        }
+                        <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })">
+                            @{ if (r.CombRecipe.DateSubmitted != null)
+                                {
+                                    @r.CombRecipe.DateSubmitted.ToString("MM/dd/yy")
+                                }
+                                else
+                                {
+                                    @y;
+                                }
+                            }
+                        </a>
+                        <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })">
+                            @{
+                                if (!r.IsLiked)
+                                {
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>@r.CombRecipe.LikeCounter
+                                }
+                                else
+                                {
+                                    <i class="fa fa-heartbeat" aria-hidden="true"></i>@r.CombRecipe.LikeCounter
+                                }
+                            }
+                        </a>
+                            
+                    </div>
+                    <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })">
+                        <h5>@r.CombRecipe.RecipieName</h5>
+                    </a>
+                </div>
             </div>
-            <a href="#">
-                <h5>"A delicious and fresh change to pork tacos" - Brad</h5>
-            </a>
-        </div>
-    </div>
-
-    <!-- Single Slide -->
+        }
+       }
+    @*<!-- Single Slide -->
     <div class="welcome-single-slide">
         <!-- Post Thumb -->
         @{
@@ -143,7 +181,7 @@
                 <h5>"A classic twist with fresh taste" - Kaitlyn</h5>
             </a>
         </div>
-    </div>
+    </div>*@
 
 </section>
 <!-- ****** Welcome Area End ****** -->

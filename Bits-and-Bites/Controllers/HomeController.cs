@@ -15,7 +15,61 @@ namespace Bits_and_Bites.Controllers
         
         public ActionResult Index()
         {
-            return View();
+            List<RecipeWhole> scrollBarList = new List<RecipeWhole>();
+            List<RecipeWhole> indexList = new List<RecipeWhole>();
+            IndexRecs newInd = new IndexRecs();
+
+
+            if (db.RecipieDB.Count() > 6)
+            {
+                List<Recipie> tmpRe = db.RecipieDB.SqlQuery("SELECT TOP 6 * FROM Recipies").ToList();
+                foreach (Recipie rec in tmpRe)
+                {
+                    RecipeWhole tmpWhole = new RecipeWhole();
+                    tmpWhole.CombRecipe = rec;
+                    tmpWhole.CombImage = db.ImageDB.Where(x => x.Id == rec.ImageID).FirstOrDefault();
+                    scrollBarList.Add(tmpWhole);
+                }
+            }
+            else
+            {
+                List<Recipie> tmpRe = db.RecipieDB.SqlQuery("SELECT * FROM Recipies").ToList();
+                foreach (Recipie rec in tmpRe)
+                {
+                    RecipeWhole tmpWhole = new RecipeWhole();
+                    tmpWhole.CombRecipe = rec;
+                    tmpWhole.CombImage = db.ImageDB.Where(x => x.Id == rec.ImageID).FirstOrDefault();
+                    scrollBarList.Add(tmpWhole);
+                }
+            }
+
+            if (db.RecipieDB.Count() > 6)
+            {
+                List<Recipie> tmpRe = db.RecipieDB.OrderByDescending(x => x.DateSubmitted).Take(5).ToList();
+                foreach (Recipie rec in tmpRe)
+                {
+                    RecipeWhole tmpWhole = new RecipeWhole();
+                    tmpWhole.CombRecipe = rec;
+                    tmpWhole.CombImage = db.ImageDB.Where(x => x.Id == rec.ImageID).FirstOrDefault();
+                    indexList.Add(tmpWhole);
+                }
+            }
+            else
+            {
+                List<Recipie> tmpRe = db.RecipieDB.OrderByDescending(x => x.DateSubmitted).ToList();
+                foreach (Recipie rec in tmpRe)
+                {
+                    RecipeWhole tmpWhole = new RecipeWhole();
+                    tmpWhole.CombRecipe = rec;
+                    tmpWhole.CombImage = db.ImageDB.Where(x => x.Id == rec.ImageID).FirstOrDefault();
+                    indexList.Add(tmpWhole);
+                }
+            }
+
+            newInd.ListForIndexScrollBar = scrollBarList;
+            newInd.MostRecentRecs = indexList;
+
+            return View(newInd);
         }
 
         public ActionResult BlogPost()
