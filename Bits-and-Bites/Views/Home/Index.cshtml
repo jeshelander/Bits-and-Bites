@@ -229,13 +229,22 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <div class="row">
+                    <h2>Recent Additions:</h2>
 
                     <!-- Single Post -->
                     <div class="col-12">
                         <div class="single-post wow fadeInUp" data-wow-delay=".2s">
                             <!-- Post Thumb -->
                             <div class="post-thumb">
-                                <img src="~/Content/img/blog-img/1.jpg" alt="">
+                                @{ if (Model.MostRecentRecs[0].CombRecipe.ImageID != 0)
+                                    {
+                                        <img src="~/Home/ReturnPicture?id=@Model.MostRecentRecs[0].CombRecipe.ImageID" alt="@Model.MostRecentRecs[0].CombImage.ImageAlt">
+                                    }
+                                    if (Model.MostRecentRecs[0].CombRecipe.ImageID == 0)
+                                    {
+                                        <img src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">
+                                    }
+                                }
                             </div>
                             <!-- Post Content -->
                             <div class="post-content">
@@ -243,39 +252,63 @@
                                     <div class="post-author-date-area d-flex">
                                         <!-- Post Author -->
                                         <div class="post-author">
-                                            <a href="#">By Marian</a>
+                                            @{ if (Model.MostRecentRecs[0].CombRecipe.SubmittedByID != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[0].CombRecipe.SubmittedByName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Date -->
                                         <div class="post-date">
-                                            <a href="#">May 19, 2017</a>
+                                            @{ if (Model.MostRecentRecs[0].CombRecipe.DateSubmitted != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[0].CombRecipe.DateSubmitted.ToString("MM/dd/yy")</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                     </div>
                                     <!-- Post Comment & Share Area -->
                                     <div class="post-comment-share-area d-flex">
                                         <!-- Post Favourite -->
                                         <div class="post-favourite">
-                                            <a href="#"><i class="fa fa-heart-0" aria-hidden="true"></i> 10</a>
+                                            @{
+                                                if (!Model.MostRecentRecs[0].IsLiked)
+                                                {
+                                                    <a href="@Url.Action("ChangeLikes", "Home", new { id = Model.MostRecentRecs[0].CombRecipe.Id })"><i class="fa fa-heart-o" aria-hidden="true"></i>@Model.MostRecentRecs[0].CombRecipe.LikeCounter</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#"><i class="fa fa-heartbeat" aria-hidden="true"></i>@Model.MostRecentRecs[0].CombRecipe.LikeCounter</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Comments -->
-                                        <div class="post-comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                        <!-- Post Share -->
-                                        <div class="post-share">
-                                            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                        </div>
+                                        @*<div class="post-comments">
+                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                    </div>
+                    <!-- Post Share -->
+                    <div class="post-share">
+                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                    </div>*@
                                     </div>
                                 </div>
-                                <a href="#">
-                                    <h2 class="post-headline">Boil The Kettle And Make A Cup Of Tea Folks, This Is Going To Be A Big One!</h2>
+                                <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = Model.MostRecentRecs[0].CombRecipe.Id })">
+
+                                    <h4 class="post-headline">@Model.MostRecentRecs[0].CombRecipe.RecipieName</h4>
                                 </a>
-                                <p>Tiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p>
-                                <a href="#" class="read-more">Continue Reading..</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Single Post -->
+                    @*<!-- Single Post -->
                     <div class="col-12 col-md-6">
                         <div class="single-post wow fadeInUp" data-wow-delay=".4s">
                             <!-- Post Thumb -->
@@ -445,7 +478,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
                     <!-- ******* List Blog Area Start ******* -->
                     <!-- Single Post -->
@@ -453,7 +486,15 @@
                         <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".2s">
                             <!-- Post Thumb -->
                             <div class="post-thumb">
-                                <img src="~/Content/img/blog-img/6.jpg" alt="">
+                                    @{ if (Model.MostRecentRecs[1].CombRecipe.ImageID != 0)
+                                        {
+                                            <img src="~/Home/ReturnPicture?id=@Model.MostRecentRecs[1].CombRecipe.ImageID" alt="@Model.MostRecentRecs[1].CombImage.ImageAlt">
+                                        }
+                                        if (Model.MostRecentRecs[1].CombRecipe.ImageID == 0)
+                                        {
+                                            <img src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">
+                                        }
+                                    }
                             </div>
                             <!-- Post Content -->
                             <div class="post-content">
@@ -461,34 +502,58 @@
                                     <div class="post-author-date-area d-flex">
                                         <!-- Post Author -->
                                         <div class="post-author">
-                                            <a href="#">By Marian</a>
+                                            @{ if (Model.MostRecentRecs[1].CombRecipe.SubmittedByID != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[1].CombRecipe.SubmittedByName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Date -->
                                         <div class="post-date">
-                                            <a href="#">May 19, 2017</a>
+                                            @{ if (Model.MostRecentRecs[1].CombRecipe.DateSubmitted != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[1].CombRecipe.DateSubmitted.ToString("MM/dd/yy")</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                     </div>
                                     <!-- Post Comment & Share Area -->
                                     <div class="post-comment-share-area d-flex">
                                         <!-- Post Favourite -->
                                         <div class="post-favourite">
-                                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
+                                            @{
+                                                if (!Model.MostRecentRecs[1].IsLiked)
+                                                {
+                                                    <a href="@Url.Action("ChangeLikes", "Home", new { id = Model.MostRecentRecs[1].CombRecipe.Id })"><i class="fa fa-heart-o" aria-hidden="true"></i>@Model.MostRecentRecs[1].CombRecipe.LikeCounter</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#"><i class="fa fa-heartbeat" aria-hidden="true"></i>@Model.MostRecentRecs[1].CombRecipe.LikeCounter</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Comments -->
-                                        <div class="post-comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                        <!-- Post Share -->
-                                        <div class="post-share">
-                                            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                        </div>
+                                        @*<div class="post-comments">
+                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                    </div>
+                    <!-- Post Share -->
+                    <div class="post-share">
+                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                    </div>*@
                                     </div>
                                 </div>
-                                <a href="#">
-                                    <h4 class="post-headline">The 10 Best Bars By The Seaside In Blackpool, UK</h4>
+                                <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = Model.MostRecentRecs[0].CombRecipe.Id })">
+
+                                    <h4 class="post-headline">@Model.MostRecentRecs[1].CombRecipe.RecipieName</h4>
                                 </a>
-                                <p>Tiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                                <a href="#" class="read-more">Continue Reading..</a>
                             </div>
                         </div>
                     </div>
@@ -498,7 +563,15 @@
                         <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".4s">
                             <!-- Post Thumb -->
                             <div class="post-thumb">
-                                <img src="~/Content/img/blog-img/7.jpg" alt="">
+                                @{ if (Model.MostRecentRecs[2].CombRecipe.ImageID != 0)
+                                    {
+                                        <img src="~/Home/ReturnPicture?id=@Model.MostRecentRecs[2].CombRecipe.ImageID" alt="@Model.MostRecentRecs[2].CombImage.ImageAlt">
+                                    }
+                                    if (Model.MostRecentRecs[2].CombRecipe.ImageID == 0)
+                                    {
+                                        <img src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">
+                                    }
+                                }
                             </div>
                             <!-- Post Content -->
                             <div class="post-content">
@@ -506,34 +579,58 @@
                                     <div class="post-author-date-area d-flex">
                                         <!-- Post Author -->
                                         <div class="post-author">
-                                            <a href="#">By Marian</a>
+                                            @{ if (Model.MostRecentRecs[2].CombRecipe.SubmittedByID != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[2].CombRecipe.SubmittedByName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Date -->
                                         <div class="post-date">
-                                            <a href="#">May 19, 2017</a>
+                                            @{ if (Model.MostRecentRecs[2].CombRecipe.DateSubmitted != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[2].CombRecipe.DateSubmitted.ToString("MM/dd/yy")</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                     </div>
                                     <!-- Post Comment & Share Area -->
                                     <div class="post-comment-share-area d-flex">
                                         <!-- Post Favourite -->
                                         <div class="post-favourite">
-                                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
+                                            @{
+                                                if (!Model.MostRecentRecs[2].IsLiked)
+                                                {
+                                                    <a href="@Url.Action("ChangeLikes", "Home", new { id = Model.MostRecentRecs[2].CombRecipe.Id })"><i class="fa fa-heart-o" aria-hidden="true"></i>@Model.MostRecentRecs[2].CombRecipe.LikeCounter</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#"><i class="fa fa-heartbeat" aria-hidden="true"></i>@Model.MostRecentRecs[2].CombRecipe.LikeCounter</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Comments -->
-                                        <div class="post-comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                        <!-- Post Share -->
-                                        <div class="post-share">
-                                            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                        </div>
+                                        @*<div class="post-comments">
+                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                    </div>
+                    <!-- Post Share -->
+                    <div class="post-share">
+                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                    </div>*@
                                     </div>
                                 </div>
-                                <a href="#">
-                                    <h4 class="post-headline">How To Get a Narcissist to Feel Empathy</h4>
+                                <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = Model.MostRecentRecs[2].CombRecipe.Id })">
+
+                                    <h4 class="post-headline">@Model.MostRecentRecs[2].CombRecipe.RecipieName</h4>
                                 </a>
-                                <p>Tiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                                <a href="#" class="read-more">Continue Reading..</a>
                             </div>
                         </div>
                     </div>
@@ -543,7 +640,15 @@
                         <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".6s">
                             <!-- Post Thumb -->
                             <div class="post-thumb">
-                                <img src="~/Content/img/blog-img/8.jpg" alt="">
+                                @{ if (Model.MostRecentRecs[3].CombRecipe.ImageID != 0)
+                                    {
+                                        <img src="~/Home/ReturnPicture?id=@Model.MostRecentRecs[0].CombRecipe.ImageID" alt="@Model.MostRecentRecs[0].CombImage.ImageAlt">
+                                    }
+                                    if (Model.MostRecentRecs[3].CombRecipe.ImageID == 0)
+                                    {
+                                        <img src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">
+                                    }
+                                }
                             </div>
                             <!-- Post Content -->
                             <div class="post-content">
@@ -551,34 +656,58 @@
                                     <div class="post-author-date-area d-flex">
                                         <!-- Post Author -->
                                         <div class="post-author">
-                                            <a href="#">By Marian</a>
+                                            @{ if (Model.MostRecentRecs[3].CombRecipe.SubmittedByID != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[3].CombRecipe.SubmittedByName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Date -->
                                         <div class="post-date">
-                                            <a href="#">May 19, 2017</a>
+                                            @{ if (Model.MostRecentRecs[3].CombRecipe.DateSubmitted != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[3].CombRecipe.DateSubmitted.ToString("MM/dd/yy")</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                     </div>
                                     <!-- Post Comment & Share Area -->
                                     <div class="post-comment-share-area d-flex">
                                         <!-- Post Favourite -->
                                         <div class="post-favourite">
-                                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
+                                            @{
+                                                if (!Model.MostRecentRecs[3].IsLiked)
+                                                {
+                                                    <a href="@Url.Action("ChangeLikes", "Home", new { id = Model.MostRecentRecs[3].CombRecipe.Id })"><i class="fa fa-heart-o" aria-hidden="true"></i>@Model.MostRecentRecs[3].CombRecipe.LikeCounter</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#"><i class="fa fa-heartbeat" aria-hidden="true"></i>@Model.MostRecentRecs[3].CombRecipe.LikeCounter</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Comments -->
-                                        <div class="post-comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                        <!-- Post Share -->
-                                        <div class="post-share">
-                                            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                        </div>
+                                        @*<div class="post-comments">
+                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                    </div>
+                    <!-- Post Share -->
+                    <div class="post-share">
+                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                    </div>*@
                                     </div>
                                 </div>
-                                <a href="#">
-                                    <h4 class="post-headline">Bristol's 10 Amazing Weekend Brunches And Late Breakfasts</h4>
+                                <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = Model.MostRecentRecs[3].CombRecipe.Id })">
+
+                                    <h4 class="post-headline">@Model.MostRecentRecs[3].CombRecipe.RecipieName</h4>
                                 </a>
-                                <p>Tiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                                <a href="#" class="read-more">Continue Reading..</a>
                             </div>
                         </div>
                     </div>
@@ -587,8 +716,17 @@
                     <div class="col-12">
                         <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".8s">
                             <!-- Post Thumb -->
+                            <!-- Post Thumb -->
                             <div class="post-thumb">
-                                <img src="~/Content/img/blog-img/9.jpg" alt="">
+                                @{ if (Model.MostRecentRecs[4].CombRecipe.ImageID != 0)
+                                    {
+                                        <img src="~/Home/ReturnPicture?id=@Model.MostRecentRecs[4].CombRecipe.ImageID" alt="@Model.MostRecentRecs[0].CombImage.ImageAlt">
+                                    }
+                                    if (Model.MostRecentRecs[4].CombRecipe.ImageID == 0)
+                                    {
+                                        <img src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">
+                                    }
+                                }
                             </div>
                             <!-- Post Content -->
                             <div class="post-content">
@@ -596,38 +734,62 @@
                                     <div class="post-author-date-area d-flex">
                                         <!-- Post Author -->
                                         <div class="post-author">
-                                            <a href="#">By Marian</a>
+                                            @{ if (Model.MostRecentRecs[4].CombRecipe.SubmittedByID != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[4].CombRecipe.SubmittedByName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Date -->
                                         <div class="post-date">
-                                            <a href="#">May 19, 2017</a>
+                                            @{ if (Model.MostRecentRecs[4].CombRecipe.DateSubmitted != null)
+                                                {
+                                                    <a>@Model.MostRecentRecs[4].CombRecipe.DateSubmitted.ToString("MM/dd/yy")</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>N/A</a>
+                                                }
+                                            }
                                         </div>
                                     </div>
                                     <!-- Post Comment & Share Area -->
                                     <div class="post-comment-share-area d-flex">
                                         <!-- Post Favourite -->
                                         <div class="post-favourite">
-                                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
+                                            @{
+                                                if (!Model.MostRecentRecs[4].IsLiked)
+                                                {
+                                                    <a href="@Url.Action("ChangeLikes", "Home", new { id = Model.MostRecentRecs[4].CombRecipe.Id })"><i class="fa fa-heart-o" aria-hidden="true"></i>@Model.MostRecentRecs[4].CombRecipe.LikeCounter</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#"><i class="fa fa-heartbeat" aria-hidden="true"></i>@Model.MostRecentRecs[4].CombRecipe.LikeCounter</a>
+                                                }
+                                            }
                                         </div>
                                         <!-- Post Comments -->
-                                        <div class="post-comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                        <!-- Post Share -->
-                                        <div class="post-share">
-                                            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                        </div>
+                                        @*<div class="post-comments">
+                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                    </div>
+                    <!-- Post Share -->
+                    <div class="post-share">
+                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                    </div>*@
                                     </div>
                                 </div>
-                                <a href="#">
-                                    <h4 class="post-headline">10 Of The Best Places To Eat In Liverpool, England</h4>
+                                <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = Model.MostRecentRecs[4].CombRecipe.Id })">
+
+                                    <h4 class="post-headline">@Model.MostRecentRecs[4].CombRecipe.RecipieName</h4>
                                 </a>
-                                <p>Tiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                                <a href="#" class="read-more">Continue Reading..</a>
                             </div>
+
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -658,7 +820,7 @@
                         <div class="about-me-widget-thumb">
                             <img src="~/Content/img/about-img/3.png" alt="">
                         </div>
-                        <h4 class="font-shadow-into-light">James Schelander</h4>
+                        <h4 class="font-shadow-into-light">James Shelander</h4>
                         <p>Good food is the way to lead a healthy and happy life. Founder of the Bits and Bites group!</p>
                     </div>
 
@@ -677,7 +839,7 @@
                         </div>
                     </div>
 
-                    <!-- Single Widget Area -->
+                    @*<!-- Single Widget Area -->
                     <div class="single-widget-area popular-post-widget">
                         <div class="widget-title text-center">
                             <h6>Populer Post</h6>
@@ -762,7 +924,7 @@
                                 <button type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                             </form>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
