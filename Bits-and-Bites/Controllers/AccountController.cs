@@ -399,8 +399,8 @@ namespace Bits_and_Bites.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

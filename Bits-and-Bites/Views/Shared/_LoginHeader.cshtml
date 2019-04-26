@@ -26,9 +26,12 @@
                             <a href="@Url.Action(" Register", "Account" , new { controller="Account" })">Sign Up</a>
                         </div>*@
                         <div class="login" style="z-index: 5">
+                            <a href="@Url.Action("LogOff", "Account")">Sign Out</a>
+                        </div>
+                        <div class="login" style="z-index: 5">
                             <h4>Welcome @Context.User.Identity.Name</h4>
                         </div>
-                    </div>
+                        </div>
 
                     <!-- Search Button Area -->
                     <div class="search_button">
