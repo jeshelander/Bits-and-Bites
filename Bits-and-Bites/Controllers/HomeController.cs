@@ -344,7 +344,6 @@ namespace Bits_and_Bites.Controllers
         {
             Bits_and_Bites.Models.Image im = db.ImageDB.Where(m => m.Id == id).SingleOrDefault();
             return File(im.StoredImage, im.ContentType);
-            //System.Drawing.Image x = (System.Drawing.Image)((new ImageConverter()).ConvertFrom(incStream));
         }
 
         public ActionResult ViewReports()
