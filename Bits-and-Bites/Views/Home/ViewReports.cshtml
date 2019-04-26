@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Bits_and_Bites.Models
+@model StatsModel
 @model IList<RecipeWhole>
 
 
@@ -98,12 +99,12 @@
                                                 </div>
                                                 <!-- Post Comments -->
                                                 @*<div class="post-comments">
-                                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                                    </div>
-                                                    <!-- Post Share -->
-                                                    <div class="post-share">
-                                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                                    </div>*@
+                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                                                </div>
+                                                <!-- Post Share -->
+                                                <div class="post-share">
+                                                    <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                </div>*@
                                             </div>
                                         </div>
                                         <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })">
@@ -122,28 +123,54 @@
         </div>
         @{
             int counter = 0;
-            if (Model.Count() > 0)
+            if (StatsModel.count() > 0)
             {
-                foreach (RecipeWhole r in Model)
+                foreach (StatsModel. in MyModule1)
                 {
                     counter++;
                 }
 
-                <h4>Total number of recipes in database: @{counter}</h4>
+                <h4>Total number of recipes in database:</h4>+counter;
             }
-            else
-            { 
-                <h4>There are no recipes on the site.</h4>
-                    };
-                    //User counter from AspNetUsers
-                    int userCounter = 0;
-                    //foreach (AspNetUsers user in Model)
-                    //{
-                    //    userCounter++;
-                    //}
 
+        };
 
+        @{
+            int counterTotalRecommendations = 0;
+            
+                foreach ()
+                {
+                    counter++;
+                }
+
+                <h4>Total number of recipes in database:</h4>+counter;
+
+        };
+
+        @{ //Likes counter, however
+            @*int likesCounter = 0;
+            if (Model.Count() > 0)
+            {
+                foreach (Like l in Model)
+                {
+                    likesCounter++;
+                }
+
+                <h4>Total number of likes on the site:</h4>+counter;*@
         }
+
+        };
+
+        @{
+            //User counter from AspNetUsers
+            //int userCounter = 0;
+            //foreach (AspNetUsers user in Model)
+            //{
+            //    userCounter++;
+            //}
+
+
+        };
     </div>
 </section>
 @*<!-- Single Post -->
