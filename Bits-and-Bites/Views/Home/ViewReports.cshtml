@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Bits_and_Bites.Models
 @model StatsModel
-@model IList<RecipeWhole>
 
 
 <!-- ****** Breadcumb Area Start ****** -->
@@ -43,134 +42,14 @@
 <section class="archive-area section_padding_80">
     <div class="container">
         <div class="row">
-            @{
-                if (Model.Count() > 0)
-                {
-                    foreach (RecipeWhole r in Model)
-                    {
-                        <!-- Single Post -->
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    @{ if (r.CombRecipe.ImageID != 0)
-                                        {
-                                            <img src="~/Home/ReturnPicture?id=@r.CombRecipe.ImageID" alt="@r.CombImage.ImageAlt">
-                                        }
-                                        if (r.CombRecipe.ImageID == 0)
-                                        {
-                                            <img src="~/Content/img/blog-img/12.jpg" alt="There is no image for this recipe">
-                                        }
-                                    }
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <div class="post-meta d-flex">
-                                        <div class="post-author-date-area d-flex">
-                                            <!-- Post Author -->
-                                            <div class="post-author">
-                                                @{ if (r.CombRecipe.SubmittedByName != null)
-                                                    {
-                                                        <a>@r.CombRecipe.SubmittedByName</a>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a>N/A</a>
-                                                    }
-                                                }
-                                            </div>
-                                            <!-- Post Date -->
-                                            <div class="post-date">
-                                                @{ if (r.CombRecipe.DateSubmitted != null)
-                                                    {
-                                                        <a>@r.CombRecipe.DateSubmitted.ToString("MM/dd/yy")</a>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a>N/A</a>
-                                                    }
-                                                }
-                                            </div>
-                                            <!-- Post Comment & Share Area -->
-                                            <div class="post-comment-share-area d-flex">
-                                                <!-- Post Favourite -->
-                                                <div class="post-favourite">
-                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                                </div>
-                                                <!-- Post Comments -->
-                                                @*<div class="post-comments">
-                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                                </div>
-                                                <!-- Post Share -->
-                                                <div class="post-share">
-                                                    <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                                </div>*@
-                                            </div>
-                                        </div>
-                                        <a href="@Url.Action("ViewSingleRecipie", "Home", new { id = r.CombRecipe.Id })">
-
-                                            <h4 class="post-headline">@r.CombRecipe.RecipieName</h4>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-
-
-            }
+            <h1 class="col-md-12">Total number of recipes stored: @Model.TotalRecipies</h1>
         </div>
-        @{
-            int counter = 0;
-            if (StatsModel.count() > 0)
-            {
-                foreach (StatsModel. in MyModule1)
-                {
-                    counter++;
-                }
-
-                <h4>Total number of recipes in database:</h4>+counter;
-            }
-
-        };
-
-        @{
-            int counterTotalRecommendations = 0;
-            
-                foreach ()
-                {
-                    counter++;
-                }
-
-                <h4>Total number of recipes in database:</h4>+counter;
-
-        };
-
-        @{ //Likes counter, however
-            @*int likesCounter = 0;
-            if (Model.Count() > 0)
-            {
-                foreach (Like l in Model)
-                {
-                    likesCounter++;
-                }
-
-                <h4>Total number of likes on the site:</h4>+counter;*@
-        }
-
-        };
-
-        @{
-            //User counter from AspNetUsers
-            //int userCounter = 0;
-            //foreach (AspNetUsers user in Model)
-            //{
-            //    userCounter++;
-            //}
-
-
-        };
+        <div class="row">
+            <h1 class="col-md-12">Total number of recipes liked: @Model.TotalLikes</h1>
+        </div>
+        <div class="row">
+            <h1 class="col-md-12">Total number of users: @Model.TotalUsers</h1>
+        </div>
     </div>
 </section>
 @*<!-- Single Post -->

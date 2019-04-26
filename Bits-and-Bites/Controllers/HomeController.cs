@@ -402,7 +402,13 @@ namespace Bits_and_Bites.Controllers
 
         public ActionResult ViewReports()
         {
-            return View();
+            StatsModel stats = new StatsModel
+            {
+                TotalRecipies = db.RecipieDB.Count(),
+                TotalUsers = db.Users.Count(),
+                TotalLikes = db.LikeDB.Count()
+            };
+            return View(stats);
         }
 
         [Authorize]

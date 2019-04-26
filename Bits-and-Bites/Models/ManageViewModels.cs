@@ -104,4 +104,11 @@ namespace Bits_and_Bites.Models
         public List<RecipeWhole> ListForIndexScrollBar { get; set; }
         public List<RecipeWhole> MostRecentRecs { get; set; }
     }
+
+    public class StatsModel
+    {
+        public int TotalUsers { get; set; }
+        public int TotalRecipies { get; set; }
+        public int TotalLikes { get; set; }
+    }
 }
