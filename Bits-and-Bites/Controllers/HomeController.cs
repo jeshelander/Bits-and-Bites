@@ -19,7 +19,6 @@ namespace Bits_and_Bites.Controllers
             List<RecipeWhole> indexList = new List<RecipeWhole>();
             IndexRecs newInd = new IndexRecs();
 
-
             if (db.RecipieDB.Count() > 6)
             {
                 List<Recipie> tmpRe = db.RecipieDB.SqlQuery("SELECT TOP 6 * FROM Recipies").ToList();
@@ -122,13 +121,17 @@ namespace Bits_and_Bites.Controllers
             if (newRecipe.CombImage != null)
             {
                 im.StoredImage = im.ReturnArray(newRecipe.CombImage);
+                im.ContentType = newRecipe.CombImage.ContentType;
+                im.ImageName = newRecipe.CombRecipe.RecipieName;
+                im.ImageAlt = newRecipe.CombRecipe.RecipieName;
+                db.ImageDB.Add(im);
+                db.SaveChanges();
+                newRecipe.CombRecipe.ImageID = im.Id;
             }
-            im.ImageName = newRecipe.CombRecipe.RecipieName;
-            im.ImageAlt = newRecipe.CombRecipe.RecipieName;
-            im.ContentType = newRecipe.CombImage.ContentType;
-            db.ImageDB.Add(im);
-            db.SaveChanges();
-            newRecipe.CombRecipe.ImageID = im.Id;
+            else
+            {
+                newRecipe.CombRecipe.ImageID = 2;
+            }
             newRecipe.CombRecipe.LikeCounter = 0;
             newRecipe.CombRecipe.SubmittedByID = User.Identity.GetUserId();
             newRecipe.CombRecipe.DateSubmitted = DateTime.Parse(DateTime.Today.Date.ToString("MM/dd/yy"));
